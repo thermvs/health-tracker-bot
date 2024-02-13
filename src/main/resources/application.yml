@@ -1,0 +1,38 @@
+bot:
+  name: ${BOT_NAME}
+  token: ${BOT_TOKEN}
+
+spring:
+  datasource:
+    url: ${CLOUD_DATASOURCE_URL}
+    username: ${CLOUD_DATASOURCE_USERNAME}
+    password: ${CLOUD_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: update
+    show-sql: true
+
+cloud:
+  aws:
+    sns:
+      enabled: false
+    s3:
+      region: "ru-central1"
+    sqs:
+      endpoint: "https://message-queue.api.cloud.yandex.net/"
+    credentials:
+      access-key: ${CLOUD_AWS_ACCESS_KEY}
+      secret-key: ${CLOUD_AWS_SECRET_KEY}
+  yandex:
+    region: "ru-central1"
+
+server:
+  port: ${PORT}
+
+message:
+  queue:
+    outgoing: ${MESSAGE_QUEUE_NAME}
